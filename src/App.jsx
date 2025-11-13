@@ -7,6 +7,7 @@ import MainPage from "./pages/MainPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from './context/AuthContext';
 import LessonDetailSection from './sections/LessonDetailSection';
+import ReviewerViewer from './sections/ReviewerViewer'; // 💡 NEW IMPORT
 import Loader from './components/Loader';
 
 function App() {
@@ -43,12 +44,22 @@ function App() {
                 } 
             />
             
-            {/* Detailed Lesson View - FIX: Use :fileId to correctly capture the URL parameter */}
+            {/* Detailed Lesson View */}
             <Route 
                 path="/main/lesson/:fileId" 
                 element={
                     <ProtectedRoute>
                         <LessonDetailSection />
+                    </ProtectedRoute>
+                } 
+            />
+
+            {/* 💡 NEW ROUTE: Reviewer View/Edit */}
+            <Route 
+                path="/main/reviewer/:reviewerFileId" 
+                element={
+                    <ProtectedRoute>
+                        <ReviewerViewer />
                     </ProtectedRoute>
                 } 
             />

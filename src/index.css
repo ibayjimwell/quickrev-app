@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+/* Add this block to your main CSS file that Tailwind processes */
+.markdown-editor-fix .CodeMirror,
+.markdown-editor-fix .CodeMirror-scroll,
+.markdown-editor-fix .editor-preview.active {
+    /* Critical: Makes the editor area and preview panel fill the remaining space 
+       and handles scrolling internally without overflowing the card. */
+    height: 100% !important;
+    min-height: 100% !important;
+}
+
+/* Optional: Improves the responsiveness of the simplemde buttons */
+.markdown-editor-fix .editor-toolbar {
+    @apply flex flex-wrap;
+}
