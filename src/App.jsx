@@ -7,7 +7,8 @@ import MainPage from "./pages/MainPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from './context/AuthContext';
 import LessonDetailSection from './sections/LessonDetailSection';
-import ReviewerViewer from './sections/ReviewerViewer'; // 💡 NEW IMPORT
+import ReviewerViewer from './sections/ReviewerViewer'; // 💡 IMPORTED
+import FlashcardsViewer from './sections/FlashcardsViewer'; // 💡 NEW IMPORT (Assuming this component exists)
 import Loader from './components/Loader';
 
 function App() {
@@ -55,11 +56,23 @@ function App() {
             />
 
             {/* 💡 NEW ROUTE: Reviewer View/Edit */}
+            {/* Using ':fileId' for the reviewer's file ID */}
             <Route 
-                path="/main/reviewer/:reviewerFileId" 
+                path="/main/reviewer/:fileId" 
                 element={
                     <ProtectedRoute>
                         <ReviewerViewer />
+                    </ProtectedRoute>
+                } 
+            />
+
+            {/* 💡 NEW ROUTE: Flashcards View/Edit */}
+            {/* Using ':fileId' for the flashcards' file ID */}
+            <Route 
+                path="/main/flashcards/:fileId" 
+                element={
+                    <ProtectedRoute>
+                        <FlashcardsViewer />
                     </ProtectedRoute>
                 } 
             />
