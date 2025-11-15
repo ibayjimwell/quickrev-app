@@ -766,7 +766,7 @@ const FlashcardsViewer = () => {
                   >
                     {/* Card Container for Flip */}
                     <motion.div
-                      className={`relative w-full h-full rounded-3xl shadow-xl transition-transform duration-700 preserve-3d ${isCurrent ? 'cursor-grab' : 'cursor-default'}`}
+                      className={`relative w-full h-full rounded-lg shadow-xl transition-transform duration-700 preserve-3d ${isCurrent ? 'cursor-grab' : 'cursor-default'}`}
                       // FIX: Use the card's specific flip state
                       animate={{ rotateY: currentCardIsFlipped ? 180 : 0 }} 
                       style={{ transformStyle: 'preserve-3d' }}
@@ -776,7 +776,7 @@ const FlashcardsViewer = () => {
                         <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">
                           {card.Question}
                         </h3>
-                        <div className="flex-grow overflow-y-auto">
+                        <div className="flex-grow">
                           {/* Only render the input for the current card */}
                           {isCurrent && renderInputArea()} 
                         </div>
