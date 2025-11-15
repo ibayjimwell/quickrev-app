@@ -11,10 +11,12 @@ function AuthPage() {
     <>
       <section className='min-h-screen flex flex-col justify-center items-center p-4 sm:p-6'>
 
-          {/* Logo */}
-          <div className="mb-10 flex items-center justify-center">
+          {/* Center: Title/Logo */}
+          <div className="flex items-center space-x-2 mb-4">
             <img className='w-10 h-10' src="/icon.png" alt="QuickRev Icon" />
-            <span className="ml-2 text-xl font-bold tracking-tight text-gray-900">QuickRev</span>
+            <span className="text-xl font-extrabold text-gray-900 tracking-tight">
+              Quick<span className="text-indigo-600">Rev</span>
+            </span>
           </div>
 
             {/* Card Container */}

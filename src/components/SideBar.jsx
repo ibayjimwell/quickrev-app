@@ -21,10 +21,12 @@ function SideBar({ isMenuOpen, closeMenu, currentPath }) {
             >
                 {/* TOP SECTION: Brand and Navigation */}
                 <div>
-                    {/* ... (Existing Brand/Logo and NavLink section is unchanged) ... */}
-                    <div className="flex items-center mb-10 gap-4">
+                   {/* Center: Title/Logo */}
+                    <div className="flex items-center space-x-2 mb-4">
                         <img className='w-10 h-10' src="/icon.png" alt="QuickRev Icon" />
-                        <h1 className="text-xl font-bold text-gray-900">QuickRev</h1>
+                        <span className="text-xl font-extrabold text-gray-900 tracking-tight">
+                            Quick<span className="text-indigo-600">Rev</span>
+                        </span>
                     </div>
 
                     {/* Navigation Links (Removed Settings from here) */}

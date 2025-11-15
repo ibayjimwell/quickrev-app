@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Download, ChevronLeft, BookOpen, Maximize, Minimize } from 'lucide-react';
 import { useParams, useNavigate } from 'react-router-dom'; 
 import axios from 'axios'; 
+import { ArrowLeft } from 'lucide-react';
 
 // Recommended Production Libraries for Markdown:
 import ReactMarkdown from 'react-markdown';
@@ -75,45 +76,49 @@ const ReviewerViewer = () => {
   // 2. Handle DOCX Download (Axios Implementation)
   const handleDownload = useCallback(async () => {
     if (!fileId) {
-      console.error('Cannot download: File ID is missing.');
+      console.error("Cannot download: File ID is missing.");
       return;
     }
 
     try {
       const url = `${API_BASE_URL}/download/reviewer/docx`;
-      
+
       const formData = new FormData();
-      formData.append('reviewer_file_id', fileId);
+      formData.append("reviewer_file_id", fileId);
 
       const response = await axios.post(url, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
-        responseType: 'blob',
+        responseType: "blob",
       });
 
       // Handle file download
-      const disposition = response.headers['content-disposition'];
+      const disposition = response.headers["content-disposition"];
       let filename = `(Reviewer) ${fileId.substring(0, 8)}.docx`;
-      
-      if (disposition && disposition.indexOf('filename=') !== -1) {
-        const filenameMatch = disposition.match(/filename\*?=['"]?([^'"]*)['"]?$/i);
+
+      if (disposition && disposition.indexOf("filename=") !== -1) {
+        const filenameMatch = disposition.match(
+          /filename\*?=['"]?([^'"]*)['"]?$/i
+        );
         filename = filenameMatch ? filenameMatch[1] : filename;
       }
 
       const blob = response.data;
       const downloadUrl = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
+      const a = document.createElement("a");
       a.href = downloadUrl;
       a.download = filename;
       document.body.appendChild(a);
       a.click();
       a.remove();
       window.URL.revokeObjectURL(downloadUrl);
-
     } catch (e) {
-      console.error('Error during DOCX download:', e.response?.data || e.message);
-      alert('Download failed. Please check console for details.'); 
+      console.error(
+        "Error during DOCX download:",
+        e.response?.data || e.message
+      );
+      alert("Download failed. Please check console for details.");
     }
   }, [fileId]);
 
@@ -134,18 +139,17 @@ const ReviewerViewer = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             
             {/* Left: Back Button */}
-            <button
-              onClick={handleBack}
-              className="flex items-center text-gray-600 hover:text-gray-900 transition-colors p-2 rounded-full hover:bg-gray-100"
-              aria-label="Go back"
-            >
-              <ChevronLeft className="w-6 h-6" />
-              <span className="hidden sm:inline ml-1 font-medium">Back</span>
-            </button>
+            <button 
+               onClick={() => navigate(-1)} 
+               className="p-2 rounded-full text-gray-500 hover:bg-gray-100 transition-colors"
+               aria-label="Go Back"
+            >
+              <ArrowLeft className="w-6 h-6" />
+            </button>
 
             {/* Center: Title/Logo */}
             <div className="flex items-center space-x-2">
-              <BookOpen className="w-6 h-6 text-indigo-500" />
+              <img className='w-10 h-10' src="/icon.png" alt="QuickRev Icon" />
               <span className="text-xl font-extrabold text-gray-900 tracking-tight">
                 Quick<span className="text-indigo-600">Rev</span>
               </span>
@@ -160,7 +164,7 @@ const ReviewerViewer = () => {
                 aria-label="Download reviewer as DOCX"
               >
                 <Download className="w-5 h-5 mr-1" />
-                <span className="hidden sm:inline">Download DOCX</span>
+                <span className="hidden sm:inline">Download</span>
               </button>
               {/* Fullscreen button is now outside the navbar */}
             </div>

@@ -137,8 +137,6 @@ function LessonsSection() {
 
     // --- Handlers ---
     const handleOpenReviewer = (lesson) => {
-        console.log(`Opening Reviewer for File ID: ${lesson.file_id}`);
-        // Navigate to the new detail page, where the Reviewer is accessible
         navigate(`/main/lesson/${lesson.file_id}`); // 🔥 NEW NAVIGATION
     };
     
@@ -279,10 +277,7 @@ function LessonsSection() {
                                     onClick={() => handleOpenReviewer(lesson)}
                                     className="inline-flex items-center px-3 py-1.5 border border-transparent rounded-lg text-sm font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200 transition-colors"
                                 >
-                                    <Eye className="w-4 h-4 mr-2" /> Reviewer
-                                </button>
-                                <button className="inline-flex items-center px-3 py-1.5 border border-transparent rounded-lg text-sm font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200 transition-colors">
-                                    <FolderOpen className="w-4 h-4 mr-2" /> Flashcards
+                                    <Eye className="w-4 h-4 mr-2" />Open Lesson
                                 </button>
                                 <button
                                     onClick={() => handleDelete(lesson.id)}

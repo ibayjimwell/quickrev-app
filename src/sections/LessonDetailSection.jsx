@@ -599,12 +599,13 @@ function LessonDetailSection() {
                             <ArrowLeft className="w-6 h-6" />
                         </button>
                         
-                        {/* Logo and Name (Center) */}
-                        <div className="flex-grow flex justify-center">
-                            <div className="flex items-center space-x-2">
-                                <div className="text-xl font-bold text-indigo-600">QuickRev</div>
-                            </div>
-                        </div>
+                        {/* Center: Title/Logo */}
+                        <div className="flex items-center space-x-2">
+                            <img className='w-10 h-10' src="/icon.png" alt="QuickRev Icon" />
+                            <span className="text-xl font-extrabold text-gray-900 tracking-tight">
+                                Quick<span className="text-indigo-600">Rev</span>
+                            </span>
+                        </div>
 
                         {/* Right Placeholder */}
                         <div className="w-10"></div>

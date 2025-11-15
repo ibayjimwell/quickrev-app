@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Search, ChevronDown, Trash2, Zap, Clock, RefreshCw } from 'lucide-react';
 import Loader from '../components/Loader'; // Assuming this import path is correct
 import { useAuth } from '../context/AuthContext.jsx'; // Assuming this context is available
+import { useNavigate } from 'react-router-dom';
 
 // API endpoint from environment variables
 const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT; 
@@ -19,6 +20,7 @@ const FlashcardsSection = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortByDate, setSortByDate] = useState('newest'); // 'newest' | 'oldest'
     const [sortByName, setSortByName] = useState('asc');    // 'asc' | 'desc'
+    const navigate = useNavigate();
     
     // Helper function to safely determine the source text
     const getSourceText = useCallback((file) => {
@@ -121,9 +123,7 @@ const FlashcardsSection = () => {
 
     // --- Handlers ---
     const handleStartFlashcards = (flashcard) => {
-        console.log(`Starting Flashcards for File ID: ${flashcard.file_id}`);
-        // TODO: Implement navigation to the /flashcards/{file_id} route
-        alert(`Navigating to Flashcards: ${flashcard.name}`);
+        navigate(`/main/flashcards/${flashcard.file_id}`)
     };
     
     const handleDelete = (id) => {

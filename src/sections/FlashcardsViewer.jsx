@@ -693,9 +693,12 @@ const FlashcardsViewer = () => {
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
+        {/* Center: Title/Logo */}
         <div className="flex items-center space-x-2">
-          <Zap className="w-6 h-6 text-yellow-400" />
-          <h1 className="text-2xl font-black text-white drop-shadow-md">QuickRev</h1>
+          <img className='w-10 h-10' src="/icon.png" alt="QuickRev Icon" />
+          <span className="text-xl font-extrabold text-white tracking-tight">
+            QuickRev
+          </span>
         </div>
         <div className="w-12 h-12"></div> {/* Spacer */}
       </div>

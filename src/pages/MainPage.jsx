@@ -52,8 +52,13 @@ function MainPage() {
                 
                 {/* Mobile Header and Hamburger Menu */}
                 <header className="flex justify-between items-center py-4 mb-4 lg:hidden">
-                    <img className='w-10 h-10' src="/icon.png" alt="QuickRev Icon" />
-                    <h1 className="text-xl font-bold text-gray-900">QuickRev</h1>
+                    {/* Center: Title/Logo */}
+                    <div className="flex items-center space-x-2">
+                        <img className='w-10 h-10' src="/icon.png" alt="QuickRev Icon" />
+                        <span className="text-xl font-extrabold text-gray-900 tracking-tight">
+                            Quick<span className="text-indigo-600">Rev</span>
+                        </span>
+                    </div>
                     <button 
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         className="p-2 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
