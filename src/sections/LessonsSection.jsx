@@ -25,12 +25,6 @@ const LessonMenu = ({ lesson, onOpenReviewer, onDelete, onClose }) => (
                 <Eye className="w-4 h-4 mr-3 text-indigo-500" /> View Reviewer
             </button>
             <button 
-                className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                onClick={() => { /* TODO: Implement Flashcards logic */ onClose(); }}
-            >
-                <FolderOpen className="w-4 h-4 mr-3 text-green-500" /> Start Flashcards
-            </button>
-            <button 
                 className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50"
                 onClick={() => { onDelete(lesson.id); onClose(); }}
             >
