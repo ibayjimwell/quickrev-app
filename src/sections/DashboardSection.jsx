@@ -10,7 +10,8 @@ import {
     Clock,      
     User,       
     Activity,
-    BookOpen      
+    BookOpen,
+    ArrowUpCircleIcon      
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.jsx'; 
 
@@ -155,7 +156,9 @@ function DashboardSection() {
                     {/* 1. CARD: File Uploader (Unchanged) */}
                     <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
                         <div className="mb-4 pb-3 border-b border-gray-200">
-                            <h2 className="text-xl font-semibold text-gray-900">Upload New Lesson File</h2>
+                            <h2 className="text-xl font-bold text-indigo-800">
+                                <ArrowUpCircleIcon className='w-5 h-5 inline-block text-indigo-600' />  Upload New Lesson File
+                            </h2>
                         </div>
                         
                         <div
@@ -193,8 +196,8 @@ function DashboardSection() {
                     {/* 2. CARD: Live Uploads Status */}
                     <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
                            <div className="mb-4 pb-3 border-b border-gray-200">
-                             <h3 className="text-xl font-semibold text-gray-900">
-                                 <Clock className="w-5 h-5 inline-block mr-2 text-indigo-600" /> Uploads
+                             <h3 className="text-xl font-bold text-indigo-800">
+                                 <Clock className="w-5 h-5 inline-block text-indigo-600" /> Uploads
                              </h3>
                            </div>
                            
@@ -275,7 +278,7 @@ function DashboardSection() {
                         </dl>
                         
                         <div className="border-t border-gray-200 pt-3">
-                            <h3 className="text-md font-semibold text-gray-700 mb-3">Activity Metrics</h3>
+                            <h3 className="text-md font-semibold text-gray-700 mb-3">Activity</h3>
                             <div className="grid grid-cols-2 gap-3">
                                 
                                 <div className="p-4 bg-indigo-50 rounded-lg shadow-sm border border-indigo-200">
@@ -283,12 +286,25 @@ function DashboardSection() {
                                     <dt className="text-xs text-indigo-700 font-medium">Total Files</dt>
                                     <dd className="text-2xl font-extrabold text-indigo-800 mt-1">5</dd> 
                                 </div>
-                                
-                                <div className="p-4 bg-purple-50 rounded-lg shadow-sm border border-purple-200">
-                                    <BookOpen className="w-5 h-5 text-purple-600 mb-1" />
-                                    <dt className="text-xs text-purple-700 font-medium">Flashcards</dt>
-                                    <dd className="text-2xl font-extrabold text-purple-800 mt-1">80</dd>
+
+                                <div className="p-4 bg-indigo-50 rounded-lg shadow-sm border border-indigo-200">
+                                    <Activity className="w-5 h-5 text-indigo-600 mb-1" />
+                                    <dt className="text-xs text-indigo-700 font-medium">Total Lessons</dt>
+                                    <dd className="text-2xl font-extrabold text-indigo-800 mt-1">5</dd> 
                                 </div>
+
+                                <div className="p-4 bg-indigo-50 rounded-lg shadow-sm border border-indigo-200">
+                                    <Activity className="w-5 h-5 text-indigo-600 mb-1" />
+                                    <dt className="text-xs text-indigo-700 font-medium">Total Reviewers</dt>
+                                    <dd className="text-2xl font-extrabold text-indigo-800 mt-1">5</dd> 
+                                </div>
+
+                                <div className="p-4 bg-indigo-50 rounded-lg shadow-sm border border-indigo-200">
+                                    <Activity className="w-5 h-5 text-indigo-600 mb-1" />
+                                    <dt className="text-xs text-indigo-700 font-medium">Total Flashcards</dt>
+                                    <dd className="text-2xl font-extrabold text-indigo-800 mt-1">5</dd> 
+                                </div>
+
                             </div>
                         </div>
                     </div>

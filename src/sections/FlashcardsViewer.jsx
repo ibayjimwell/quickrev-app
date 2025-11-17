@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { useParams } from 'react-router-dom'; // Used to get the fileId
+import { useParams, useNavigate } from 'react-router-dom'; // UPDATED: Added useNavigate
 import axios from 'axios';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Zap, RefreshCw, Check, X, Loader2, BookOpen } from 'lucide-react';
@@ -71,7 +71,7 @@ const FunLoader = ({ message = "QuickRev is loading your flashcards..." }) => (
 /**
  * 3. Mode Selection Modal
  */
-const ModeSelectionModal = ({ onSelectMode }) => {
+const ModeSelectionModal = ({ onSelectMode, onGoBack }) => { // UPDATED: Added onGoBack prop
   const modes = [
     { id: 'normal', name: 'Normal Mode', icon: BookOpen, desc: 'Answer, check, and flip. Great for learning and self-testing.' },
     { id: 'quiz', name: 'Quiz Mode', icon: Zap, desc: 'No instant check/flip. Score is displayed at the end for a true quiz experience.' },
@@ -92,9 +92,18 @@ const ModeSelectionModal = ({ onSelectMode }) => {
         exit={{ scale: 0.7, y: 50, opacity: 0 }}
         className="w-full max-w-lg p-6 bg-white rounded-2xl shadow-2xl"
       >
-        <h2 className="text-3xl font-extrabold text-indigo-600 mb-6 text-center">
-          Choose a Game Mode
-        </h2>
+        <div className="flex justify-left items-center mb-6 gap-10">
+           <button
+                onClick={onGoBack} // Handle navigation back
+                className="p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors"
+                title="Go Back"
+            >
+                <ChevronLeft className="w-6 h-6 text-gray-600" />
+            </button>
+            <h2 className="text-3xl font-extrabold text-indigo-600">
+              Choose a Game Mode
+            </h2>
+        </div>
 
         <div className="grid grid-cols-1 gap-4">
           {modes.map(mode => (
@@ -206,12 +215,13 @@ const playWrongSound = () => {
 
 const FlashcardsViewer = () => {
   const { fileId } = useParams(); // Get fileId from route params
+  const navigate = useNavigate(); // NEW: Hook for programmatic navigation
+  
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [allCards, setAllCards] = useState([]);
   const [mode, setMode] = useState(null);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  // REMOVED: const [isFlipped, setIsFlipped] = useState(false);
   
   // userAnswers now includes per-card state like isFlipped
   const [userAnswers, setUserAnswers] = useState({}); // { 0: { answer: '...', isCorrect: true, checked: true, isFlipped: false }, ... }
@@ -304,6 +314,10 @@ const FlashcardsViewer = () => {
   }, [fileId]);
 
   // --- Game Logic ---
+
+  const handleGoBack = () => { // NEW: Function to handle going back
+    navigate(-1); // Navigates to the previous entry in the history stack (e.g., the dashboard)
+  };
 
   const handleSelectMode = (selectedMode) => {
     setMode(selectedMode);
@@ -609,10 +623,10 @@ const FlashcardsViewer = () => {
         </p>
 
         <button
-          onClick={() => window.location.reload()} // Simple restart, could be a better route transition
+          onClick={handleGoBack} // UPDATED: Changed from window.location.reload to navigate back
           className="w-full p-4 bg-indigo-600 text-white font-bold rounded-xl text-lg hover:bg-indigo-700 transition-colors"
         >
-          Review or Start New Game
+          Return to Dashboard
         </button>
       </div>
     </motion.div>
@@ -644,7 +658,10 @@ const FlashcardsViewer = () => {
     return (
       <div className="animated-bg min-h-screen flex items-center justify-center p-4">
         <AnimatedGradientBackground />
-        <ModeSelectionModal onSelectMode={handleSelectMode} />
+        <ModeSelectionModal 
+            onSelectMode={handleSelectMode} 
+            onGoBack={handleGoBack} // Pass the new back function
+        />
       </div>
     );
   }
@@ -688,8 +705,9 @@ const FlashcardsViewer = () => {
       {/* Header (Non-Navbar) */}
       <div className="w-full max-w-4xl flex justify-between items-center py-4 relative z-20">
         <button
-          onClick={() => setShowModal(true)} // Or navigate back to file list
+          onClick={handleGoBack} // UPDATED: Changed from setShowModal(true) to navigate back
           className="p-3 bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition-colors"
+          title="Go Back"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>

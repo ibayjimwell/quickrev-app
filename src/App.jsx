@@ -60,9 +60,9 @@ function App() {
             <Route 
                 path="/main/reviewer/:fileId" 
                 element={
-                    <ProtectedRoute>
-                        <ReviewerViewer />
-                    </ProtectedRoute>
+                   
+                    <ReviewerViewer />
+                    
                 } 
             />
 
@@ -71,9 +71,9 @@ function App() {
             <Route 
                 path="/main/flashcards/:fileId" 
                 element={
-                    <ProtectedRoute>
-                        <FlashcardsViewer />
-                    </ProtectedRoute>
+                   
+                    <FlashcardsViewer />
+                    
                 } 
             />
 

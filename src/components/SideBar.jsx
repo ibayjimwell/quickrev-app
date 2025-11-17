@@ -79,9 +79,6 @@ function SideBar({ isMenuOpen, closeMenu, currentPath }) {
                         <p className="text-xs text-indigo-700 mb-4">
                             Generate comprehensive flashcards from your uploaded content instantly.
                         </p>
-                        <button className="w-full py-2 text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 transition-colors">
-                            Generate
-                        </button>
                     </div>
 
                     {/* User Profile Menu */}

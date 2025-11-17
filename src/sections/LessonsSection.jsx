@@ -1,5 +1,3 @@
-// src/components/LessonsSection.jsx (FINAL REVISION for Truncation and Menu Visibility)
-
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Search, ChevronDown, Eye, FolderOpen, Trash2, FileText, MoreVertical, Loader2, RefreshCw } from 'lucide-react';
@@ -136,9 +134,13 @@ function LessonsSection() {
     
     const handleDelete = (id) => {
         if (window.confirm("Are you sure you want to delete this lesson?")) {
-            // TODO: API call to delete the file/document
-            console.log(`[DELETE] Attempting to delete document with id: ${id}`);
             setLessons(lessons.filter(lesson => lesson.id !== id));
+            axios.delete(`${API_ENDPOINT}/cloud/file/delete`, {
+                params: {
+                    user_id: user.$id,
+                    file_id: id
+                }
+            })
         }
     };
     
@@ -274,7 +276,7 @@ function LessonsSection() {
                                     <Eye className="w-4 h-4 mr-2" />Open Lesson
                                 </button>
                                 <button
-                                    onClick={() => handleDelete(lesson.id)}
+                                    onClick={() => handleDelete(lesson.file_id)}
                                     className="inline-flex items-center p-2 rounded-lg text-red-600 hover:bg-red-50 transition-colors"
                                     aria-label={`Delete ${lesson.name}`}
                                 >

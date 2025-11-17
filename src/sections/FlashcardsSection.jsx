@@ -1,5 +1,3 @@
-// src/components/FlashcardsSection.jsx (FINAL REVISION with Error Fix and Data Fetching)
-
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Search, ChevronDown, Trash2, Zap, Clock, RefreshCw } from 'lucide-react';
@@ -128,9 +126,13 @@ const FlashcardsSection = () => {
     
     const handleDelete = (id) => {
         if (window.confirm("Are you sure you want to delete this flashcard set?")) {
-            // TODO: Add API call for deletion here
-            console.log(`[DELETE] Attempting to delete flashcard document with id: ${id}`);
             setFlashcards(flashcards.filter(flashcard => flashcard.id !== id));
+            axios.delete(`${API_ENDPOINT}/cloud/file/delete`, {
+                params: {
+                    user_id: user.$id,
+                    file_id: id
+                }
+            })
         }
     };
     
@@ -230,7 +232,6 @@ const FlashcardsSection = () => {
                                     </p>
                                     <p className="text-xs text-gray-500 mt-1 space-x-3">
                                         <span className="inline-flex items-center"><Clock className="w-3 h-3 mr-1"/> Generated: **{formatDate(flashcard.generatedDate)}**</span>
-                                        <span className="inline-flex items-center"><Zap className="w-3 h-3 mr-1 text-green-500"/> Source: {flashcard.source}</span>
                                     </p>
                                 </div>
                             </div>
@@ -244,7 +245,7 @@ const FlashcardsSection = () => {
                                     Start
                                 </button>
                                 <button
-                                    onClick={(e) => { e.stopPropagation(); handleDelete(flashcard.id); }}
+                                    onClick={(e) => { e.stopPropagation(); handleDelete(flashcard.file_id); }}
                                     className="inline-flex items-center p-2 rounded-lg text-red-600 hover:bg-red-50 transition-colors"
                                     aria-label={`Delete ${flashcard.name}`}
                                 >
