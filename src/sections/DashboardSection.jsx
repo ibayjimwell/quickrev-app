@@ -277,7 +277,7 @@ function DashboardSection() {
                             </div>
                         </dl>
                         
-                        <div className="border-t border-gray-200 pt-3">
+                        {/* <div className="border-t border-gray-200 pt-3">
                             <h3 className="text-md font-semibold text-gray-700 mb-3">Activity</h3>
                             <div className="grid grid-cols-2 gap-3">
                                 
@@ -306,7 +306,7 @@ function DashboardSection() {
                                 </div>
 
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

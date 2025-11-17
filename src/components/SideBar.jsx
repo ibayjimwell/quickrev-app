@@ -33,7 +33,7 @@ function SideBar({ isMenuOpen, closeMenu, currentPath }) {
                     <div className="space-y-1">
                         <NavLink 
                             icon={LayoutDashboard} 
-                            label="Dashboard" 
+                            label="Home" 
                             to="/main/dashboard" 
                             isActive={currentPath === '/main/dashboard'}
                             onClick={closeMenu}
