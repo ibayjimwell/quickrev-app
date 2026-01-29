@@ -2,7 +2,7 @@
 
 **Instant Reviewer & Flashcard Generator for Students**
 
-![QuickRev App](https://raw.githubusercontent.com/ibayjimwell/quickrev-app/refs/heads/main/public/app-image.png)
+![QuickRev App](https://raw.githubusercontent.com/ibayjimwell/quickrev-app/refs/heads/master/public/app-image.png)
 
 🌐 **Live App:** [https://quickrev-app.vercel.app/](https://quickrev-app.vercel.app/)
 
