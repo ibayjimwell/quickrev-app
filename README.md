@@ -5,6 +5,7 @@
 ![QuickRev App](https://raw.githubusercontent.com/ibayjimwell/quickrev-app/refs/heads/master/public/app-image.png)
 
 🌐 **Live App:** [https://quickrev-app.vercel.app/](https://quickrev-app.vercel.app/)
+🔌 **Backend API:** [https://github.com/ibayjimwell/quickrev-file-api](https://github.com/ibayjimwell/quickrev-file-api)
 
 ---
 
